@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Kola's Currency Exchange</title>
+    <meta charset="UTF-8"> 
+    <script src="exchange.js"></script>
+    <style>
+        #outer-container {
+            width: 500px; /* Adjust the width as needed for the outer container */
+            margin: 0 auto;
+            background-color: #595f39; /* Set background color for the outer space */
+            padding: 10px; /* Adjust the padding as needed for the outer container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+         #container {
+            width: calc(100% - 100px); /* Adjust the width to expand the overall popup */
+            margin: 0 auto;
+            border: 2px solid #C4C5BA; /* Adjust the border style and color as needed */
+            padding: 10px; /* Increase the padding to create space outside the border */
+        }
+        #amount {
+            width: 195px; /* Adjust the width as needed */
+            /*display: block; */
+            font-size: 13px; /* Change the font size as needed */
+            font-family: "Optima", sans-serif;
+            color: #1B1B1B;
+            background-color: #ffffff; 
+            margin-top: 10px;  
+        }
+        #fromCurrency {
+            width: 193px; /* Adjust the width as needed */
+            padding-right: 0px; /* Increase the padding on the right side */
+            font-size: 13px; /* Change the font size as needed */
+            font-family: "Optima", sans-serif;
+            color: #1B1B1B;
+            background-color: #ffffff;
+        }
+        #toCurrency {
+            width: 100%; /* Adjust the width as needed */
+            padding-right: 0px; /* Increase the padding on the right side */
+            font-size: 13px; /* Change the font size as needed */
+            font-family: "Optima", sans-serif;
+            color: #1B1B1B;
+            background-color:#ffffff;
+        }
+
+        body {
+            background-color:#595f39; /* Use any shade of gray you prefer (#ccc is a light gray). */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 35px;
+            font-family: "Copperplate", sans-serif;
+            color: #C4C5BA;
+            margin-top: 0;
+        }
+
+        #convert {
+            text-align: center;
+            display: block; /* Center-align the text within the button */
+            margin: 0 auto;
+            font-family: "Optima", sans-serif;
+            color: #1B1B1B;
+            background-color: #ffffff;
+        }
+
+        #result {
+            font-size: 24px;
+            font-family: "Optima", sans-serif;
+            color: #C4C5BA; /* Apply the Optima font to the result text */
+        }
+
+        .copyright {
+            font-family: "Optima", sans-serif;
+            font-size: 12px;
+            margin: 0 auto;
+            color: #C4C5BA;
+            margin-top: 0;
+            margin-left: 38px;
+        }
+        .from-section {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .from-currency-label {
+            cursor: not-allowed; /* Changes the cursor to a non-clickable one */
+            user-select: none; /* Prevents text selection */
+            pointer-events: none;
+            font-family: "Optima", sans-serif;
+            font-weight: bold; /* Apply your desired styles */
+            color: #C4C5BA; /* Apply your desired styles */
+            margin-right: 10px; /* Add space between label and select */
+            flex-basis: 50px;
+        }   
+
+        .to-currency-label {
+            cursor: not-allowed; /* Changes the cursor to a non-clickable one */
+            user-select: none; /* Prevents text selection */
+            pointer-events: none;
+            font-family: "Optima", sans-serif;
+            font-weight: bold; /* Apply your desired styles */
+            color: #C4C5BA; /* Apply your desired styles */
+            margin-right: 10px; /* Add space between label and select */
+        }   
+        a {
+            color: #C4C5BA;; /* Change the link color to blue */
+            text-decoration: none; /* Remove the default underline */
+            /* Add other styles such as hover effects if needed */
+        }
+
+    </style>
+</head>
+<body>
+<div id="outer-container"> 
+    <div id="container"> 
+        <h1>Presto Chango</h1>
+        <div class="from-section">
+            <label class="from-currency-label" for="amount">From</label>
+        </div>
+        <input type="number" id="amount" placeholder="Enter currency amount"/>
+        <select id="fromCurrency" size="1">
+            <option value="USD">US Dollar (USD)</option>
+            <option value="EUR">European Euro(EUR)</option>
+            <option value="JPY">Japanese Yen(JPY)</option>
+            <option value="GBP">Pound Sterling(GBP)</option>
+            <option value="AUD">Australian Dollar(AUD)</option>
+            <option value="CAD">Canadian Dollar(CAD)</option>
+            <option value="CHF">Swiss Franc(CHF)</option>
+            <option value="CNY">Chinese Yuan Renminbi(CNY)</option>
+            <option value="SEK">Swedish Krona(SEK)</option>
+            <option value="MXN">Mexican Peso(MXN)</option>
+            <option value="NZD">New Zealand Dollar(NZD)</option>
+            <option value="SGD">Singapore Dollar(SGD)</option>
+            <option value="HKD">Hong Kong Dollar(HKD)</option>
+            <option value="NOK">Norwegian Krone(NOK)</option>
+            <option value="KRW">South Korean Won(KRW)</option>
+            <option value="TRY">Turkish Lira(TRY)</option>
+            <option value="INR">Indian Rupee(INR)</option>
+            <option value="RUB">Russian Ruble(RUB)</option>
+            <option value="BRL">Brazillian Ruble(BRL)</option>
+            <option value="ZAR">South African Rand(ZAR)</option>
+            <option value="DKK">Danish Krone(DKK)</option>
+            <option value="PLN">Polish Zloty(PLN)</option>
+            <option value="TWD">New Taiwan Dollar(TWD)</option>
+            <option value="THB">Thai Baht(THB)</option>
+            <option value="MYR">Malaysian Ringgit(MYR)</option>
+            <option value="NGN">Nigerian Naira(NGN)</option>
+        </select> 
+        <div style="margin-top: 10px;"></div>
+        <label class="to-currency-label">To</label>
+
+        <select id="toCurrency" size="1">
+            <option value="USD">US Dollar (USD)</option>
+            <option value="EUR">European Euro(EUR)</option>
+            <option value="JPY">Japanese Yen(JPY)</option>
+            <option value="GBP">Pound Sterling(GBP)</option>
+            <option value="AUD">Australian Dollar(AUD)</option>
+            <option value="CAD">Canadian Dollar(CAD)</option>
+            <option value="CHF">Swiss Franc(CHF)</option>
+            <option value="CNY">Chinese Yuan Renminbi(CNY)</option>
+            <option value="SEK">Swedish Krona(SEK)</option>
+            <option value="MXN">Mexican Peso(MXN)</option>
+            <option value="NZD">New Zealand Dollar(NZD)</option>
+            <option value="SGD">Singapore Dollar(SGD)</option>
+            <option value="HKD">Hong Kong Dollar(HKD)</option>
+            <option value="NOK">Norwegian Krone(NOK)</option>
+            <option value="KRW">South Korean Won(KRW)</option>
+            <option value="TRY">Turkish Lira(TRY)</option>
+            <option value="INR">Indian Rupee(INR)</option>
+            <option value="RUB">Russian Ruble(RUB)</option>
+            <option value="BRL">Brazillian Ruble(BRL)</option>
+            <option value="ZAR">South African Rand(ZAR)</option>
+            <option value="DKK">Danish Krone(DKK)</option>
+            <option value="PLN">Polish Zloty(PLN)</option>
+            <option value="TWD">New Taiwan Dollar(TWD)</option>
+            <option value="THB">Thai Baht(THB)</option>
+            <option value="MYR">Malaysian Ringgit(MYR)</option>
+            <option value="NGN">Nigerian Naira(NGN)</option>
+        </select>
+        <button id="convert">Convert Currency</button>
+        <div id="result"></div>
+    </div>
+    <footer class="copyright"> 
+        &copy; Kola Bamgbose 2023 - <a href="https://www.codesmith.io/">A Codesmith Production</a> 
+    </footer>
+
+</body>
+</html>
